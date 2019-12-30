@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.master.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.Project">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="project_type_id" jdbcType="INTEGER" property="projectTypeId" />
+    <result column="project_type_name" jdbcType="VARCHAR" property="projectTypeName" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="project_title" jdbcType="VARCHAR" property="projectTitle" />
+    <result column="project_content" jdbcType="VARCHAR" property="projectContent" />
+    <result column="project_min_price" jdbcType="DECIMAL" property="projectMinPrice" />
+    <result column="project_max_price" jdbcType="DECIMAL" property="projectMaxPrice" />
+    <result column="project_status" jdbcType="INTEGER" property="projectStatus" />
+    <result column="examine_status" jdbcType="INTEGER" property="examineStatus" />
+    <result column="project_need_people" jdbcType="INTEGER" property="projectNeedPeople" />
+    <result column="is_direct_hire" jdbcType="INTEGER" property="isDirectHire" />
+    <result column="is_trusteeship" jdbcType="INTEGER" property="isTrusteeship" />
+    <result column="trusteeship_amount" jdbcType="DECIMAL" property="trusteeshipAmount" />
+    <result column="rank_field" jdbcType="INTEGER" property="rankField" />
+    <result column="project_create_date" jdbcType="TIMESTAMP" property="projectCreateDate" />
+    <result column="project_end_date" jdbcType="TIMESTAMP" property="projectEndDate" />
+    <result column="founder" jdbcType="VARCHAR" property="founder" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, project_type_id, project_type_name, create_user_id, create_user_name, project_title, 
+    project_content, project_min_price, project_max_price, project_status, examine_status, 
+    project_need_people, is_direct_hire, is_trusteeship, trusteeship_amount, rank_field, 
+    project_create_date, project_end_date, founder, modifier, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.Project">
+    insert into project (id, project_type_id, project_type_name, 
+      create_user_id, create_user_name, project_title, 
+      project_content, project_min_price, project_max_price, 
+      project_status, examine_status, project_need_people, 
+      is_direct_hire, is_trusteeship, trusteeship_amount, 
+      rank_field, project_create_date, project_end_date, 
+      founder, modifier, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{projectTypeId,jdbcType=INTEGER}, #{projectTypeName,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{projectTitle,jdbcType=VARCHAR}, 
+      #{projectContent,jdbcType=VARCHAR}, #{projectMinPrice,jdbcType=DECIMAL}, #{projectMaxPrice,jdbcType=DECIMAL}, 
+      #{projectStatus,jdbcType=INTEGER}, #{examineStatus,jdbcType=INTEGER}, #{projectNeedPeople,jdbcType=INTEGER}, 
+      #{isDirectHire,jdbcType=INTEGER}, #{isTrusteeship,jdbcType=INTEGER}, #{trusteeshipAmount,jdbcType=DECIMAL}, 
+      #{rankField,jdbcType=INTEGER}, #{projectCreateDate,jdbcType=TIMESTAMP}, #{projectEndDate,jdbcType=TIMESTAMP}, 
+      #{founder,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.Project">
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projectTypeId != null">
+        project_type_id,
+      </if>
+      <if test="projectTypeName != null">
+        project_type_name,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="projectTitle != null">
+        project_title,
+      </if>
+      <if test="projectContent != null">
+        project_content,
+      </if>
+      <if test="projectMinPrice != null">
+        project_min_price,
+      </if>
+      <if test="projectMaxPrice != null">
+        project_max_price,
+      </if>
+      <if test="projectStatus != null">
+        project_status,
+      </if>
+      <if test="examineStatus != null">
+        examine_status,
+      </if>
+      <if test="projectNeedPeople != null">
+        project_need_people,
+      </if>
+      <if test="isDirectHire != null">
+        is_direct_hire,
+      </if>
+      <if test="isTrusteeship != null">
+        is_trusteeship,
+      </if>
+      <if test="trusteeshipAmount != null">
+        trusteeship_amount,
+      </if>
+      <if test="rankField != null">
+        rank_field,
+      </if>
+      <if test="projectCreateDate != null">
+        project_create_date,
+      </if>
+      <if test="projectEndDate != null">
+        project_end_date,
+      </if>
+      <if test="founder != null">
+        founder,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectTypeId != null">
+        #{projectTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="projectTypeName != null">
+        #{projectTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTitle != null">
+        #{projectTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="projectContent != null">
+        #{projectContent,jdbcType=VARCHAR},
+      </if>
+      <if test="projectMinPrice != null">
+        #{projectMinPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="projectMaxPrice != null">
+        #{projectMaxPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="projectStatus != null">
+        #{projectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="examineStatus != null">
+        #{examineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectNeedPeople != null">
+        #{projectNeedPeople,jdbcType=INTEGER},
+      </if>
+      <if test="isDirectHire != null">
+        #{isDirectHire,jdbcType=INTEGER},
+      </if>
+      <if test="isTrusteeship != null">
+        #{isTrusteeship,jdbcType=INTEGER},
+      </if>
+      <if test="trusteeshipAmount != null">
+        #{trusteeshipAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rankField != null">
+        #{rankField,jdbcType=INTEGER},
+      </if>
+      <if test="projectCreateDate != null">
+        #{projectCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectEndDate != null">
+        #{projectEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founder != null">
+        #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.Project">
+    update project
+    <set>
+      <if test="projectTypeId != null">
+        project_type_id = #{projectTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="projectTypeName != null">
+        project_type_name = #{projectTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectTitle != null">
+        project_title = #{projectTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="projectContent != null">
+        project_content = #{projectContent,jdbcType=VARCHAR},
+      </if>
+      <if test="projectMinPrice != null">
+        project_min_price = #{projectMinPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="projectMaxPrice != null">
+        project_max_price = #{projectMaxPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="projectStatus != null">
+        project_status = #{projectStatus,jdbcType=INTEGER},
+      </if>
+      <if test="examineStatus != null">
+        examine_status = #{examineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="projectNeedPeople != null">
+        project_need_people = #{projectNeedPeople,jdbcType=INTEGER},
+      </if>
+      <if test="isDirectHire != null">
+        is_direct_hire = #{isDirectHire,jdbcType=INTEGER},
+      </if>
+      <if test="isTrusteeship != null">
+        is_trusteeship = #{isTrusteeship,jdbcType=INTEGER},
+      </if>
+      <if test="trusteeshipAmount != null">
+        trusteeship_amount = #{trusteeshipAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rankField != null">
+        rank_field = #{rankField,jdbcType=INTEGER},
+      </if>
+      <if test="projectCreateDate != null">
+        project_create_date = #{projectCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectEndDate != null">
+        project_end_date = #{projectEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founder != null">
+        founder = #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.Project">
+    update project
+    set project_type_id = #{projectTypeId,jdbcType=INTEGER},
+      project_type_name = #{projectTypeName,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      project_title = #{projectTitle,jdbcType=VARCHAR},
+      project_content = #{projectContent,jdbcType=VARCHAR},
+      project_min_price = #{projectMinPrice,jdbcType=DECIMAL},
+      project_max_price = #{projectMaxPrice,jdbcType=DECIMAL},
+      project_status = #{projectStatus,jdbcType=INTEGER},
+      examine_status = #{examineStatus,jdbcType=INTEGER},
+      project_need_people = #{projectNeedPeople,jdbcType=INTEGER},
+      is_direct_hire = #{isDirectHire,jdbcType=INTEGER},
+      is_trusteeship = #{isTrusteeship,jdbcType=INTEGER},
+      trusteeship_amount = #{trusteeshipAmount,jdbcType=DECIMAL},
+      rank_field = #{rankField,jdbcType=INTEGER},
+      project_create_date = #{projectCreateDate,jdbcType=TIMESTAMP},
+      project_end_date = #{projectEndDate,jdbcType=TIMESTAMP},
+      founder = #{founder,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findProjectPage" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqProject">
+    select
+    <include refid="Base_Column_List" />
+    from project where 1 = 1
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="projectTypeId != null">
+      and project_type_id = #{projectTypeId}
+    </if>
+    <if test="projectTypeName != null">
+      and project_type_name = #{projectTypeName}
+    </if>
+    <if test="createUserId != null">
+      and create_user_id = #{createUserId}
+    </if>
+    <if test="createUserName != null">
+      and create_user_name = #{createUserName}
+    </if>
+    <if test="projectTitle != null">
+      and project_title = #{projectTitle}
+    </if>
+    <if test="projectStatus != null">
+      and project_status = #{projectStatus}
+    </if>
+    <if test="examineStatus != null">
+      and examine_status = #{examineStatus}
+    </if>
+    <if test="projectNeedPeople != null">
+      and project_need_people = #{projectNeedPeople}
+    </if>
+    <if test="isDirectHire != null">
+      and is_direct_hire = #{isDirectHire}
+    </if>
+    <if test="isTrusteeship != null">
+      and is_trusteeship = #{isTrusteeship}
+    </if>
+    <if test="trusteeshipAmount != null">
+      and trusteeship_amount = #{trusteeshipAmount}
+    </if>
+    <if test="projectCreateDateBegin !=null and projectCreateDateBegin !=''">
+      and project_create_date >= TO_DATE(#{projectCreateDateBegin},'yyyy-mm-dd')
+    </if>
+    <if test="projectCreateDateEnd !=null and projectCreateDateEnd !=''">
+      and TO_DATE(#{projectCreateDateEnd},'yyyy-mm-dd') >= project_create_date
+    </if>
+
+    <if test="projectEndDateBegin!=null and projectEndDateBegin!=''">
+      <![CDATA[   and DATE_FORMAT(project_end_date, '%Y-%m-%d')>=  DATE_FORMAT(#{projectEndDateBegin}, '%Y-%m-%d')   ]]>
+    </if>
+    <if test="projectEndDateEnd!=null and projectEndDateEnd!=''">
+      <![CDATA[  and DATE_FORMAT(project_end_date, '%Y-%m-%d') <= DATE_FORMAT(#{projectEndDateEnd}, '%Y-%m-%d')    ]]>
+    </if>
+
+    <if test="projectDateBegin!=null and projectDateBegin!=''">
+      <![CDATA[   and DATE_FORMAT(project_create_date, '%Y-%m-%d')>=  DATE_FORMAT(#{projectDateBegin}, '%Y-%m-%d')   ]]>
+    </if>
+    <if test="projectDateEnd!=null and projectDateEnd!=''">
+      <![CDATA[  and DATE_FORMAT(project_end_date, '%Y-%m-%d') <= DATE_FORMAT(#{projectDateEnd}, '%Y-%m-%d')    ]]>
+    </if>
+
+  </select>
+  <select id="findProjectParams" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqProject">
+    select
+    <include refid="Base_Column_List" />
+    from project
+    <where>
+      and 1 = 1
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="projectTypeId != null">
+        and project_type_id = #{projectTypeId}
+      </if>
+      <if test="projectTypeName != null">
+        and project_type_name = #{projectTypeName}
+      </if>
+      <if test="createUserId != null">
+        and create_user_id = #{createUserId}
+      </if>
+      <if test="createUserName != null">
+        and create_user_name = #{createUserName}
+      </if>
+      <if test="projectTitle != null">
+        and project_title = #{projectTitle}
+      </if>
+      and project_status in(1,2)
+    </where>
+  </select>
+
+  <select id="findProject" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqProject">
+    select
+    <include refid="Base_Column_List" />
+    from project where 1 = 1
+    <if test="id != null">
+      and id = #{id}
+    </if>
+    <if test="projectTypeId != null">
+      and project_type_id = #{projectTypeId}
+    </if>
+    <if test="projectTypeName != null">
+      and project_type_name = #{projectTypeName}
+    </if>
+    <if test="createUserId != null">
+      and create_user_id = #{createUserId}
+    </if>
+    <if test="createUserName != null">
+      and create_user_name = #{createUserName}
+    </if>
+    <if test="projectTitle != null">
+      and project_title = #{projectTitle}
+    </if>
+    <if test="projectStatus != null">
+      and project_status = #{projectStatus}
+    </if>
+    <if test="examineStatus != null">
+      and examine_status = #{examineStatus}
+    </if>
+    <if test="projectNeedPeople != null">
+      and project_need_people = #{projectNeedPeople}
+    </if>
+    <if test="isDirectHire != null">
+      and is_direct_hire = #{isDirectHire}
+    </if>
+    <if test="isTrusteeship != null">
+      and is_trusteeship = #{isTrusteeship}
+    </if>
+    <if test="trusteeshipAmount != null">
+      and trusteeship_amount = #{trusteeshipAmount}
+    </if>
+    <if test="projectCreateDateBegin !=null and projectCreateDateBegin !=''">
+      and project_create_date >= TO_DATE(#{projectCreateDateBegin},'yyyy-mm-dd')
+    </if>
+    <if test="projectCreateDateEnd !=null and projectCreateDateEnd !=''">
+      and TO_DATE(#{projectCreateDateEnd},'yyyy-mm-dd') >= project_create_date
+    </if>
+
+    <if test="projectEndDateBegin!=null and projectEndDateBegin!=''">
+      <![CDATA[   and DATE_FORMAT(project_end_date, '%Y-%m-%d')>=  DATE_FORMAT(#{projectEndDateBegin}, '%Y-%m-%d')   ]]>
+    </if>
+    <if test="projectEndDateEnd!=null and projectEndDateEnd!=''">
+      <![CDATA[  and DATE_FORMAT(project_end_date, '%Y-%m-%d') <= DATE_FORMAT(#{projectEndDateEnd}, '%Y-%m-%d')    ]]>
+    </if>
+
+    <if test="projectDateBegin!=null and projectDateBegin!=''">
+      <![CDATA[   and DATE_FORMAT(project_create_date, '%Y-%m-%d')>=  DATE_FORMAT(#{projectDateBegin}, '%Y-%m-%d')   ]]>
+    </if>
+    <if test="projectDateEnd!=null and projectDateEnd!=''">
+      <![CDATA[  and DATE_FORMAT(project_end_date, '%Y-%m-%d') <= DATE_FORMAT(#{projectDateEnd}, '%Y-%m-%d')    ]]>
+    </if>
+    <if test="sortField != null">
+      ORDER BY ${sortField} ${sort};
+    </if>
+  </select>
+</mapper>

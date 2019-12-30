@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.master.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.OrderInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="business_id" jdbcType="INTEGER" property="businessId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="project_type_id" jdbcType="INTEGER" property="projectTypeId" />
+    <result column="project_type_name" jdbcType="VARCHAR" property="projectTypeName" />
+    <result column="project_amount" jdbcType="DECIMAL" property="projectAmount" />
+    <result column="order_amount" jdbcType="DECIMAL" property="orderAmount" />
+    <result column="project_id" jdbcType="INTEGER" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="order_pay_date" jdbcType="TIMESTAMP" property="orderPayDate" />
+    <result column="founder" jdbcType="VARCHAR" property="founder" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, business_id, user_id, project_type_id, project_type_name, project_amount, 
+    order_amount, project_id, project_name, order_status, remark, order_date, order_pay_date, 
+    founder, modifier, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.OrderInfo">
+    insert into order_info (id, order_id, business_id, 
+      user_id, project_type_id, project_type_name, 
+      project_amount, order_amount, project_id, 
+      project_name, order_status, remark, 
+      order_date, order_pay_date, founder, 
+      modifier, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{businessId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{projectTypeId,jdbcType=INTEGER}, #{projectTypeName,jdbcType=VARCHAR}, 
+      #{projectAmount,jdbcType=DECIMAL}, #{orderAmount,jdbcType=DECIMAL}, #{projectId,jdbcType=INTEGER}, 
+      #{projectName,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{orderDate,jdbcType=TIMESTAMP}, #{orderPayDate,jdbcType=TIMESTAMP}, #{founder,jdbcType=VARCHAR}, 
+      #{modifier,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="projectTypeId != null">
+        project_type_id,
+      </if>
+      <if test="projectTypeName != null">
+        project_type_name,
+      </if>
+      <if test="projectAmount != null">
+        project_amount,
+      </if>
+      <if test="orderAmount != null">
+        order_amount,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="orderPayDate != null">
+        order_pay_date,
+      </if>
+      <if test="founder != null">
+        founder,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectTypeId != null">
+        #{projectTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="projectTypeName != null">
+        #{projectTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAmount != null">
+        #{projectAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null">
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayDate != null">
+        #{orderPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founder != null">
+        #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.OrderInfo">
+    update order_info
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessId != null">
+        business_id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectTypeId != null">
+        project_type_id = #{projectTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="projectTypeName != null">
+        project_type_name = #{projectTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectAmount != null">
+        project_amount = #{projectAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderAmount != null">
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=INTEGER},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderPayDate != null">
+        order_pay_date = #{orderPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founder != null">
+        founder = #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.OrderInfo">
+    update order_info
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      business_id = #{businessId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      project_type_id = #{projectTypeId,jdbcType=INTEGER},
+      project_type_name = #{projectTypeName,jdbcType=VARCHAR},
+      project_amount = #{projectAmount,jdbcType=DECIMAL},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      project_id = #{projectId,jdbcType=INTEGER},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      order_date = #{orderDate,jdbcType=TIMESTAMP},
+      order_pay_date = #{orderPayDate,jdbcType=TIMESTAMP},
+      founder = #{founder,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findOrderInfoPage" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqOrderInfo">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="orderId != null">
+        and order_id = #{orderId}
+      </if>
+      <if test="businessId != null">
+        and business_id = #{businessId}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="projectTypeId != null">
+        and project_type_id = #{projectTypeId}
+      </if>
+      <if test="projectId != null">
+        and project_id = #{projectId}
+      </if>
+      <if test="projectId != null">
+        and order_status = #{orderStatus}
+      </if>
+      <if test="orderDateBegin!=null and orderDateBegin!=''">
+        <![CDATA[   and DATE_FORMAT(order_date, '%Y-%m-%d')>=  DATE_FORMAT(#{orderDateBegin}, '%Y-%m-%d')   ]]>
+      </if>
+      <if test="orderDateEnd!=null and orderDateEnd!=''">
+        <![CDATA[  and DATE_FORMAT(order_date, '%Y-%m-%d') <= DATE_FORMAT(#{orderDateEnd}, '%Y-%m-%d')    ]]>
+      </if>
+      <if test="orderPayDateBegin!=null and orderPayDateBegin!=''">
+        <![CDATA[   and DATE_FORMAT(order_pay_date, '%Y-%m-%d')>=  DATE_FORMAT(#{orderPayDateBegin}, '%Y-%m-%d')   ]]>
+      </if>
+      <if test="orderPayDateEnd!=null and orderPayDateEnd!=''">
+        <![CDATA[  and DATE_FORMAT(order_pay_date, '%Y-%m-%d') <= DATE_FORMAT(#{orderPayDateEnd}, '%Y-%m-%d')    ]]>
+      </if>
+    </where>
+  </select>
+
+</mapper>

@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.cluster.UserInfoClusterMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_nickName" jdbcType="VARCHAR" property="userNickname" />
+    <result column="user_head" jdbcType="VARCHAR" property="userHead" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="id_card_x" jdbcType="VARCHAR" property="idCardX" />
+    <result column="id_card_y" jdbcType="VARCHAR" property="idCardY" />
+    <result column="user_status" jdbcType="INTEGER" property="userStatus" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="user_level" jdbcType="INTEGER" property="userLevel" />
+    <result column="emergency_contact_name" jdbcType="VARCHAR" property="emergencyContactName" />
+    <result column="emergency_contact_mobile" jdbcType="VARCHAR" property="emergencyContactMobile" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, user_nickName, user_head, password, wechat, gender, mobile, address, 
+    id_card_x, id_card_y, user_status, amount, user_type, user_level, emergency_contact_name, 
+    emergency_contact_mobile
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.UserInfo">
+    insert into tb_userinfo (id, user_name, user_nickName, 
+      user_head, password, wechat, 
+      gender, mobile, address, 
+      id_card_x, id_card_y, user_status, 
+      amount, user_type, user_level, 
+      emergency_contact_name, emergency_contact_mobile
+      )
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, 
+      #{userHead,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{idCardX,jdbcType=VARCHAR}, #{idCardY,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{userType,jdbcType=INTEGER}, #{userLevel,jdbcType=INTEGER}, 
+      #{emergencyContactName,jdbcType=VARCHAR}, #{emergencyContactMobile,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.UserInfo">
+    insert into tb_userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userNickname != null">
+        user_nickName,
+      </if>
+      <if test="userHead != null">
+        user_head,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="idCardX != null">
+        id_card_x,
+      </if>
+      <if test="idCardY != null">
+        id_card_y,
+      </if>
+      <if test="userStatus != null">
+        user_status,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="userLevel != null">
+        user_level,
+      </if>
+      <if test="emergencyContactName != null">
+        emergency_contact_name,
+      </if>
+      <if test="emergencyContactMobile != null">
+        emergency_contact_mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null">
+        #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardX != null">
+        #{idCardX,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardY != null">
+        #{idCardY,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null">
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyContactName != null">
+        #{emergencyContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactMobile != null">
+        #{emergencyContactMobile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.UserInfo">
+    update tb_userinfo
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        user_nickName = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null">
+        user_head = #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardX != null">
+        id_card_x = #{idCardX,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardY != null">
+        id_card_y = #{idCardY,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null">
+        user_level = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyContactName != null">
+        emergency_contact_name = #{emergencyContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactMobile != null">
+        emergency_contact_mobile = #{emergencyContactMobile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.UserInfo">
+    update tb_userinfo
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_nickName = #{userNickname,jdbcType=VARCHAR},
+      user_head = #{userHead,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      id_card_x = #{idCardX,jdbcType=VARCHAR},
+      id_card_y = #{idCardY,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      user_type = #{userType,jdbcType=INTEGER},
+      user_level = #{userLevel,jdbcType=INTEGER},
+      emergency_contact_name = #{emergencyContactName,jdbcType=VARCHAR},
+      emergency_contact_mobile = #{emergencyContactMobile,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findUserInfoByUserName" resultMap="BaseResultMap">
+    select
+     <include refid="Base_Column_List" />
+    from tb_userinfo where user_name = #{userName}
+  </select>
+</mapper>

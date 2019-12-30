@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.master.ProjectTypeMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.ProjectType">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="charge_rate" jdbcType="DOUBLE" property="chargeRate" />
+    <result column="project_type_status" jdbcType="INTEGER" property="projectTypeStatus" />
+    <result column="founder" jdbcType="VARCHAR" property="founder" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parent_id, category_name, charge_rate, project_type_status, founder, modifier, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from project_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.ProjectType">
+    insert into project_type (id, parent_id, category_name, 
+      charge_rate, project_type_status, founder, 
+      modifier, create_date, update_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, 
+      #{chargeRate,jdbcType=DOUBLE}, #{projectTypeStatus,jdbcType=INTEGER}, #{founder,jdbcType=VARCHAR}, 
+      #{modifier,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.ProjectType">
+    insert into project_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="chargeRate != null">
+        charge_rate,
+      </if>
+      <if test="projectTypeStatus != null">
+        project_type_status,
+      </if>
+      <if test="founder != null">
+        founder,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeRate != null">
+        #{chargeRate,jdbcType=DOUBLE},
+      </if>
+      <if test="projectTypeStatus != null">
+        #{projectTypeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="founder != null">
+        #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.ProjectType">
+    update project_type
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeRate != null">
+        charge_rate = #{chargeRate,jdbcType=DOUBLE},
+      </if>
+      <if test="projectTypeStatus != null">
+        project_type_status = #{projectTypeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="founder != null">
+        founder = #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.ProjectType">
+    update project_type
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      charge_rate = #{chargeRate,jdbcType=DOUBLE},
+      project_type_status = #{projectTypeStatus,jdbcType=INTEGER},
+      founder = #{founder,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findProjectTypePage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from project_type
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="parentId != null">
+        and parent_id = #{parentId}
+      </if>
+      <if test="categoryName != null">
+        and category_name = #{categoryName}
+      </if>
+      <if test="chargeRateMin!=null">
+        and charge_rate &gt;= #{chargeRateMin}
+      </if>
+      <if test="chargeRateMax!=null">
+        and charge_rate &lt; #{chargeRateMax}
+      </if>
+      <if test="projectTypeStatus != null">
+        and project_type_status = #{projectTypeStatus}
+      </if>
+    </where>
+  </select>
+
+
+  <select id="findProjectType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from project_type
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="parentId != null">
+        and parent_id = #{parentId}
+      </if>
+      <if test="categoryName != null">
+        and category_name = #{categoryName}
+      </if>
+      <if test="chargeRateMin!=null">
+        and charge_rate &gt;= #{chargeRateMin}
+      </if>
+      <if test="chargeRateMax!=null">
+        and charge_rate &lt; #{chargeRateMax}
+      </if>
+      <if test="projectTypeStatus != null">
+        and project_type_status = #{projectTypeStatus}
+      </if>
+    </where>
+  </select>
+</mapper>

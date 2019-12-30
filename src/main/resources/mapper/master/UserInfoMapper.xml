@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.master.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_nickName" jdbcType="VARCHAR" property="userNickname" />
+    <result column="id_card" jdbcType="VARCHAR" property="idCard" />
+    <result column="user_head" jdbcType="VARCHAR" property="userHead" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="province_id" jdbcType="INTEGER" property="provinceId" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="county_Area_id" jdbcType="INTEGER" property="countyAreaId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="id_card_x" jdbcType="VARCHAR" property="idCardX" />
+    <result column="id_card_y" jdbcType="VARCHAR" property="idCardY" />
+    <result column="user_status" jdbcType="INTEGER" property="userStatus" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="user_type" jdbcType="INTEGER" property="userType" />
+    <result column="user_level" jdbcType="INTEGER" property="userLevel" />
+    <result column="emergency_contact_name" jdbcType="VARCHAR" property="emergencyContactName" />
+    <result column="emergency_contact_mobile" jdbcType="VARCHAR" property="emergencyContactMobile" />
+    <result column="founder" jdbcType="VARCHAR" property="founder" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, user_nickName, id_card, user_head, password, wechat, gender, mobile, 
+    province_id, city_id, county_Area_id, address, id_card_x, id_card_y, user_status, 
+    amount, user_type, user_level, emergency_contact_name, emergency_contact_mobile, 
+    founder, modifier, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.UserInfo">
+    insert into userinfo (id, user_name, user_nickName, 
+      id_card, user_head, password, 
+      wechat, gender, mobile, 
+      province_id, city_id, county_Area_id, 
+      address, id_card_x, id_card_y, 
+      user_status, amount, user_type, 
+      user_level, emergency_contact_name, emergency_contact_mobile, 
+      founder, modifier, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{userHead,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{wechat,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{countyAreaId,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{idCardX,jdbcType=VARCHAR}, #{idCardY,jdbcType=VARCHAR}, 
+      #{userStatus,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{userType,jdbcType=INTEGER}, 
+      #{userLevel,jdbcType=INTEGER}, #{emergencyContactName,jdbcType=VARCHAR}, #{emergencyContactMobile,jdbcType=VARCHAR}, 
+      #{founder,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.UserInfo">
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userNickname != null">
+        user_nickName,
+      </if>
+      <if test="idCard != null">
+        id_card,
+      </if>
+      <if test="userHead != null">
+        user_head,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="provinceId != null">
+        province_id,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="countyAreaId != null">
+        county_Area_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="idCardX != null">
+        id_card_x,
+      </if>
+      <if test="idCardY != null">
+        id_card_y,
+      </if>
+      <if test="userStatus != null">
+        user_status,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="userType != null">
+        user_type,
+      </if>
+      <if test="userLevel != null">
+        user_level,
+      </if>
+      <if test="emergencyContactName != null">
+        emergency_contact_name,
+      </if>
+      <if test="emergencyContactMobile != null">
+        emergency_contact_mobile,
+      </if>
+      <if test="founder != null">
+        founder,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null">
+        #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countyAreaId != null">
+        #{countyAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardX != null">
+        #{idCardX,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardY != null">
+        #{idCardY,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="userType != null">
+        #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null">
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyContactName != null">
+        #{emergencyContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactMobile != null">
+        #{emergencyContactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="founder != null">
+        #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.UserInfo">
+    update userinfo
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNickname != null">
+        user_nickName = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userHead != null">
+        user_head = #{userHead,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countyAreaId != null">
+        county_Area_id = #{countyAreaId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardX != null">
+        id_card_x = #{idCardX,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardY != null">
+        id_card_y = #{idCardY,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="userType != null">
+        user_type = #{userType,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null">
+        user_level = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyContactName != null">
+        emergency_contact_name = #{emergencyContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyContactMobile != null">
+        emergency_contact_mobile = #{emergencyContactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="founder != null">
+        founder = #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.UserInfo">
+    update userinfo
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_nickName = #{userNickname,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      user_head = #{userHead,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      county_Area_id = #{countyAreaId,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      id_card_x = #{idCardX,jdbcType=VARCHAR},
+      id_card_y = #{idCardY,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      user_type = #{userType,jdbcType=INTEGER},
+      user_level = #{userLevel,jdbcType=INTEGER},
+      emergency_contact_name = #{emergencyContactName,jdbcType=VARCHAR},
+      emergency_contact_mobile = #{emergencyContactMobile,jdbcType=VARCHAR},
+      founder = #{founder,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findUserInfoByUserName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo where user_name = #{userName}
+  </select>
+
+  <select id="findUserInfo" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqUserInfoQuery">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="userName != null">
+        and user_name = #{userName}
+      </if>
+      <if test="userNickname != null">
+        and user_nickName = #{userNickname}
+      </if>
+      <if test="idCard != null">
+        and id_card = #{idCard}
+      </if>
+      <if test="mobile != null">
+        and mobile = #{mobile}
+      </if>
+      <if test="userStatus != null">
+        and user_status = #{userStatus}
+      </if>
+    </where>
+  </select>
+
+  <select id="findUserInfoPage" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqUserInfoQuery">
+    select
+    <include refid="Base_Column_List" />
+    from userinfo
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="userName != null">
+        and user_name = #{userName}
+      </if>
+      <if test="userNickname != null">
+        and user_nickName = #{userNickname}
+      </if>
+      <if test="idCard != null">
+        and id_card = #{idCard}
+      </if>
+      <if test="mobile != null">
+        and mobile = #{mobile}
+      </if>
+      <if test="userStatus != null">
+        and user_status = #{userStatus}
+      </if>
+    </where>
+  </select>
+
+  <select id="findUserInfoByUserNameAndPassword" resultMap="BaseResultMap"
+          parameterType="com.fenghuang.job.request.ReqUserInfo">
+    select
+    <include refid="Base_Column_List"/>
+    from userinfo
+    where 1 =1 and user_status =2
+    and user_name = #{userName}
+    and password = #{password}
+  </select>
+
+  <update id="changePassword" parameterType="com.fenghuang.job.request.ReqUserInfoUpdate">
+    update userinfo set password = #{newPassword} where 1 = 1 and user_name = #{userName} and password = #{password}
+  </update>
+
+  <select id="loginQueryUserInfo" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqUserInfo">
+    select
+    <include refid="Base_Column_List"/>
+    from userinfo
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="userName != null">
+        and user_name = #{userName}
+      </if>
+      <if test="userNickname != null">
+        and user_nickName = #{userNickname}
+      </if>
+      <if test="idCard != null">
+        and id_card = #{idCard}
+      </if>
+      <if test="mobile != null">
+        and mobile = #{mobile}
+      </if>
+    </where>
+  </select>
+
+  <select id="findUserByUserNameAndPassword" resultType="com.fenghuang.job.entity.UserInfo">
+    select
+    <include refid="Base_Column_List"/>
+    from userinfo
+    where 1 =1 and user_status =2
+    and user_name = #{userName}
+    and password = #{password}
+  </select>
+  <select id="findUserByUserNicknameAndPassword" resultType="com.fenghuang.job.entity.UserInfo">
+    select
+    <include refid="Base_Column_List"/>
+    from userinfo
+    where 1 =1 and user_status =2
+    and user_nickName = #{userNickname}
+    and password = #{password}
+  </select>
+  <select id="findMobileAndPassword" resultType="com.fenghuang.job.entity.UserInfo">
+    select
+    <include refid="Base_Column_List"/>
+    from userinfo
+    where 1 =1 and user_status =2
+    and mobile = #{mobile}
+    and password = #{password}
+  </select>
+  <select id="findIdCardAndPassword" resultType="com.fenghuang.job.entity.UserInfo">
+    select
+    <include refid="Base_Column_List"/>
+    from userinfo
+    where 1 =1 and user_status =2
+    and id_card = #{userName}
+    and password = #{idCard}
+  </select>
+</mapper>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.master.CashWithdrawalMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.CashWithdrawal">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="cash_withdrawal_order_id" jdbcType="VARCHAR" property="cashWithdrawalOrderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="cash_withdrawal_amount" jdbcType="DECIMAL" property="cashWithdrawalAmount" />
+    <result column="cash_withdrawal_account" jdbcType="VARCHAR" property="cashWithdrawalAccount" />
+    <result column="cash_withdrawal_account_type" jdbcType="INTEGER" property="cashWithdrawalAccountType" />
+    <result column="cash_withdrawal_status" jdbcType="INTEGER" property="cashWithdrawalStatus" />
+    <result column="examine_status" jdbcType="INTEGER" property="examineStatus" />
+    <result column="cash_withdrawal_date" jdbcType="TIMESTAMP" property="cashWithdrawalDate" />
+    <result column="examine_date" jdbcType="TIMESTAMP" property="examineDate" />
+    <result column="founder" jdbcType="VARCHAR" property="founder" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cash_withdrawal_order_id, user_id, cash_withdrawal_amount, cash_withdrawal_account, 
+    cash_withdrawal_account_type, cash_withdrawal_status, examine_status, cash_withdrawal_date, 
+    examine_date, founder, modifier, create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cash_withdrawal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cash_withdrawal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.CashWithdrawal">
+    insert into cash_withdrawal (id, cash_withdrawal_order_id, user_id, 
+      cash_withdrawal_amount, cash_withdrawal_account, 
+      cash_withdrawal_account_type, cash_withdrawal_status, 
+      examine_status, cash_withdrawal_date, examine_date, 
+      founder, modifier, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{cashWithdrawalOrderId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{cashWithdrawalAmount,jdbcType=DECIMAL}, #{cashWithdrawalAccount,jdbcType=VARCHAR}, 
+      #{cashWithdrawalAccountType,jdbcType=INTEGER}, #{cashWithdrawalStatus,jdbcType=INTEGER}, 
+      #{examineStatus,jdbcType=INTEGER}, #{cashWithdrawalDate,jdbcType=TIMESTAMP}, #{examineDate,jdbcType=TIMESTAMP}, 
+      #{founder,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.CashWithdrawal">
+    insert into cash_withdrawal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cashWithdrawalOrderId != null">
+        cash_withdrawal_order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="cashWithdrawalAmount != null">
+        cash_withdrawal_amount,
+      </if>
+      <if test="cashWithdrawalAccount != null">
+        cash_withdrawal_account,
+      </if>
+      <if test="cashWithdrawalAccountType != null">
+        cash_withdrawal_account_type,
+      </if>
+      <if test="cashWithdrawalStatus != null">
+        cash_withdrawal_status,
+      </if>
+      <if test="examineStatus != null">
+        examine_status,
+      </if>
+      <if test="cashWithdrawalDate != null">
+        cash_withdrawal_date,
+      </if>
+      <if test="examineDate != null">
+        examine_date,
+      </if>
+      <if test="founder != null">
+        founder,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cashWithdrawalOrderId != null">
+        #{cashWithdrawalOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cashWithdrawalAmount != null">
+        #{cashWithdrawalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashWithdrawalAccount != null">
+        #{cashWithdrawalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="cashWithdrawalAccountType != null">
+        #{cashWithdrawalAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="cashWithdrawalStatus != null">
+        #{cashWithdrawalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="examineStatus != null">
+        #{examineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cashWithdrawalDate != null">
+        #{cashWithdrawalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examineDate != null">
+        #{examineDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founder != null">
+        #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.CashWithdrawal">
+    update cash_withdrawal
+    <set>
+      <if test="cashWithdrawalOrderId != null">
+        cash_withdrawal_order_id = #{cashWithdrawalOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cashWithdrawalAmount != null">
+        cash_withdrawal_amount = #{cashWithdrawalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="cashWithdrawalAccount != null">
+        cash_withdrawal_account = #{cashWithdrawalAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="cashWithdrawalAccountType != null">
+        cash_withdrawal_account_type = #{cashWithdrawalAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="cashWithdrawalStatus != null">
+        cash_withdrawal_status = #{cashWithdrawalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="examineStatus != null">
+        examine_status = #{examineStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cashWithdrawalDate != null">
+        cash_withdrawal_date = #{cashWithdrawalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="examineDate != null">
+        examine_date = #{examineDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="founder != null">
+        founder = #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.CashWithdrawal">
+    update cash_withdrawal
+    set cash_withdrawal_order_id = #{cashWithdrawalOrderId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      cash_withdrawal_amount = #{cashWithdrawalAmount,jdbcType=DECIMAL},
+      cash_withdrawal_account = #{cashWithdrawalAccount,jdbcType=VARCHAR},
+      cash_withdrawal_account_type = #{cashWithdrawalAccountType,jdbcType=INTEGER},
+      cash_withdrawal_status = #{cashWithdrawalStatus,jdbcType=INTEGER},
+      examine_status = #{examineStatus,jdbcType=INTEGER},
+      cash_withdrawal_date = #{cashWithdrawalDate,jdbcType=TIMESTAMP},
+      examine_date = #{examineDate,jdbcType=TIMESTAMP},
+      founder = #{founder,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findCashWithdrawal" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqUserInfo">
+    select
+    <include refid="Base_Column_List"/>
+    from cash_withdrawal
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="cashWithdrawalOrderId != null">
+        and cash_withdrawal_order_id = #{cashWithdrawalOrderId}
+      </if>
+      <if test="cashWithdrawalAccountType != null">
+        and cash_withdrawal_account_type = #{cashWithdrawalAccountType}
+      </if>
+      <if test="cashWithdrawalStatus != null">
+        and cash_withdrawal_status = #{cashWithdrawalStatus}
+      </if>
+      <if test="cashWithdrawalDateBegin!=null and cashWithdrawalDateBegin!=''">
+        <![CDATA[   and DATE_FORMAT(cash_withdrawal_date, '%Y-%m-%d')>=  DATE_FORMAT(#{cashWithdrawalDateBegin}, '%Y-%m-%d')   ]]>
+      </if>
+      <if test="cashWithdrawalDateEnd!=null and cashWithdrawalDateEnd!=''">
+        <![CDATA[  and DATE_FORMAT(cash_withdrawal_date, '%Y-%m-%d') <= DATE_FORMAT(#{cashWithdrawalDateEnd}, '%Y-%m-%d')    ]]>
+      </if>
+      <if test="examineDateBegin!=null and examineDateBegin!=''">
+        <![CDATA[   and DATE_FORMAT(cash_withdrawal_date, '%Y-%m-%d')>=  DATE_FORMAT(#{examineDateBegin}, '%Y-%m-%d')   ]]>
+      </if>
+      <if test="examineDateEnd!=null and examineDateEnd!=''">
+        <![CDATA[  and DATE_FORMAT(examine_date, '%Y-%m-%d') <= DATE_FORMAT(#{examineDateEnd}, '%Y-%m-%d')    ]]>
+      </if>
+    </where>
+  </select>
+</mapper>

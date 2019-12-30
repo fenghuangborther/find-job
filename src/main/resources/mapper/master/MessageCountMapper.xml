@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.master.MessageCountMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.MessageCount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="message_type" jdbcType="INTEGER" property="messageType" />
+    <result column="send_content" jdbcType="VARCHAR" property="sendContent" />
+    <result column="send_date" jdbcType="TIMESTAMP" property="sendDate" />
+    <result column="send_ip" jdbcType="VARCHAR" property="sendIp" />
+    <result column="founder" jdbcType="VARCHAR" property="founder" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, mobile, message_type, send_content, send_date, send_ip, founder, modifier, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from message_count
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.MessageCount">
+    insert into message_count (id, user_id, mobile, 
+      message_type, send_content, send_date, 
+      send_ip, founder, modifier, 
+      create_date, update_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, 
+      #{messageType,jdbcType=INTEGER}, #{sendContent,jdbcType=VARCHAR}, #{sendDate,jdbcType=TIMESTAMP}, 
+      #{sendIp,jdbcType=VARCHAR}, #{founder,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.MessageCount">
+    insert into message_count
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="messageType != null">
+        message_type,
+      </if>
+      <if test="sendContent != null">
+        send_content,
+      </if>
+      <if test="sendDate != null">
+        send_date,
+      </if>
+      <if test="sendIp != null">
+        send_ip,
+      </if>
+      <if test="founder != null">
+        founder,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="messageType != null">
+        #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="sendContent != null">
+        #{sendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null">
+        #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendIp != null">
+        #{sendIp,jdbcType=VARCHAR},
+      </if>
+      <if test="founder != null">
+        #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.MessageCount">
+    update message_count
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="messageType != null">
+        message_type = #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="sendContent != null">
+        send_content = #{sendContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null">
+        send_date = #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendIp != null">
+        send_ip = #{sendIp,jdbcType=VARCHAR},
+      </if>
+      <if test="founder != null">
+        founder = #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.MessageCount">
+    update message_count
+    set user_id = #{userId,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      message_type = #{messageType,jdbcType=INTEGER},
+      send_content = #{sendContent,jdbcType=VARCHAR},
+      send_date = #{sendDate,jdbcType=TIMESTAMP},
+      send_ip = #{sendIp,jdbcType=VARCHAR},
+      founder = #{founder,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findMessageCountPage" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqMessageCountQuery">
+    select
+    <include refid="Base_Column_List" />
+    from message_count
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="mobile != null">
+        and mobile = #{mobile}
+      </if>
+      <if test="sendIp != null">
+        and send_ip = #{sendIp}
+      </if>
+    </where>
+  </select>
+  <select id="findMessageCount" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqMessageCountQuery2">
+    select
+    <include refid="Base_Column_List" />
+    from message_count
+    <where>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="mobile != null">
+        and mobile = #{mobile}
+      </if>
+      <if test="sendIp != null">
+        and send_ip = #{sendIp}
+      </if>
+      <if test="messageType != null">
+        and message_type = #{messageType}
+      </if>
+      <if test="oneHourAgoDate!=null">
+        and send_date &gt;= #{oneHourAgoDate}
+      </if>
+      <if test="currentSendDate!=null">
+        and send_date &lt;= #{currentSendDate}
+      </if>
+
+
+<!--      <if test="oneHourAgoDate!=null and oneHourAgoDate!=''">
+        <![CDATA[   and DATE_FORMAT(send_date, '%Y-%m-%d  %H:%i:%S')>=  DATE_FORMAT(#{oneHourAgoDate}, '%Y-%m-%d %H:%i:%S')   ]]>
+      </if>
+      <if test="currentSendDate!=null and currentSendDate!=''">
+        <![CDATA[  and DATE_FORMAT(send_date, '%Y-%m-%d  %H:%i:%S') <= DATE_FORMAT(#{currentSendDate}, '%Y-%m-%d %H:%i:%S')    ]]>
+      </if>-->
+    </where>
+  </select>
+
+</mapper>

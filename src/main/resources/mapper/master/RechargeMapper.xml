@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fenghuang.job.dao.master.RechargeMapper">
+  <resultMap id="BaseResultMap" type="com.fenghuang.job.entity.Recharge">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recharge_order_id" jdbcType="VARCHAR" property="rechargeOrderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="recharge_amount" jdbcType="DECIMAL" property="rechargeAmount" />
+    <result column="recharge_account" jdbcType="VARCHAR" property="rechargeAccount" />
+    <result column="recharge_account_type" jdbcType="INTEGER" property="rechargeAccountType" />
+    <result column="recharge_date" jdbcType="TIMESTAMP" property="rechargeDate" />
+    <result column="recharge_order_status" jdbcType="INTEGER" property="rechargeOrderStatus" />
+    <result column="thread_callback_params" jdbcType="VARCHAR" property="threadCallbackParams" />
+    <result column="founder" jdbcType="VARCHAR" property="founder" />
+    <result column="modifier" jdbcType="VARCHAR" property="modifier" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recharge_order_id, user_id, recharge_amount, recharge_account, recharge_account_type, 
+    recharge_date, recharge_order_status, thread_callback_params, founder, modifier, 
+    create_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from recharge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from recharge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fenghuang.job.entity.Recharge">
+    insert into recharge (id, recharge_order_id, user_id, 
+      recharge_amount, recharge_account, recharge_account_type, 
+      recharge_date, recharge_order_status, thread_callback_params, 
+      founder, modifier, create_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{rechargeOrderId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{rechargeAmount,jdbcType=DECIMAL}, #{rechargeAccount,jdbcType=VARCHAR}, #{rechargeAccountType,jdbcType=INTEGER}, 
+      #{rechargeDate,jdbcType=TIMESTAMP}, #{rechargeOrderStatus,jdbcType=INTEGER}, #{threadCallbackParams,jdbcType=VARCHAR}, 
+      #{founder,jdbcType=VARCHAR}, #{modifier,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fenghuang.job.entity.Recharge">
+    insert into recharge
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="rechargeOrderId != null">
+        recharge_order_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="rechargeAmount != null">
+        recharge_amount,
+      </if>
+      <if test="rechargeAccount != null">
+        recharge_account,
+      </if>
+      <if test="rechargeAccountType != null">
+        recharge_account_type,
+      </if>
+      <if test="rechargeDate != null">
+        recharge_date,
+      </if>
+      <if test="rechargeOrderStatus != null">
+        recharge_order_status,
+      </if>
+      <if test="threadCallbackParams != null">
+        thread_callback_params,
+      </if>
+      <if test="founder != null">
+        founder,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeOrderId != null">
+        #{rechargeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAmount != null">
+        #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeAccount != null">
+        #{rechargeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeAccountType != null">
+        #{rechargeAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeDate != null">
+        #{rechargeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rechargeOrderStatus != null">
+        #{rechargeOrderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="threadCallbackParams != null">
+        #{threadCallbackParams,jdbcType=VARCHAR},
+      </if>
+      <if test="founder != null">
+        #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+
+    <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fenghuang.job.entity.Recharge">
+    update recharge
+    <set>
+      <if test="rechargeOrderId != null">
+        recharge_order_id = #{rechargeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAmount != null">
+        recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeAccount != null">
+        recharge_account = #{rechargeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="rechargeAccountType != null">
+        recharge_account_type = #{rechargeAccountType,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeDate != null">
+        recharge_date = #{rechargeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rechargeOrderStatus != null">
+        recharge_order_status = #{rechargeOrderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="threadCallbackParams != null">
+        thread_callback_params = #{threadCallbackParams,jdbcType=VARCHAR},
+      </if>
+      <if test="founder != null">
+        founder = #{founder,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fenghuang.job.entity.Recharge">
+    update recharge
+    set recharge_order_id = #{rechargeOrderId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
+      recharge_account = #{rechargeAccount,jdbcType=VARCHAR},
+      recharge_account_type = #{rechargeAccountType,jdbcType=INTEGER},
+      recharge_date = #{rechargeDate,jdbcType=TIMESTAMP},
+      recharge_order_status = #{rechargeOrderStatus,jdbcType=INTEGER},
+      thread_callback_params = #{threadCallbackParams,jdbcType=VARCHAR},
+      founder = #{founder,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findRechargePage" resultMap="BaseResultMap" parameterType="com.fenghuang.job.request.ReqRecharge">
+    select
+    <include refid="Base_Column_List" />
+    from recharge
+    <where>
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="userId != null">
+        and user_id = #{userId}
+      </if>
+      <if test="rechargeAccountType != null">
+        and recharge_account_type = #{rechargeAccountType}
+      </if>
+      <if test="rechargeOrderStatus != null">
+        and recharge_order_status = #{rechargeOrderStatus}
+      </if>
+
+    </where>
+  </select>
+
+</mapper>
